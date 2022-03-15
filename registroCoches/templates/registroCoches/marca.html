@@ -1,0 +1,49 @@
+{% extends "registroCoches/plantilla.html" %}
+{% load static %}
+{% block content %}
+<table style="margin: 0 auto; padding:4em 0em">
+    <tr style="border-bottom: solid 0.5em; border-top: solid 0.5em;">
+        {% for marca in marcas %}
+        <th scope="row" style="border-collapse: separate; text-align: center;">
+            {{marca.nombreMarca}}
+            <hr>
+                <p style="font-size: 10">
+                    Modelos:
+                </p>
+            </hr>
+            <ul>
+                {% for modelo in modelos %}
+
+               {% if modelo.marca.nombreMarca == marca.nombreMarca %}
+                <li style="font-size: 10">
+                    {{modelo.nombreModelo}}
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </th>
+        <td style="border-collapse: separate; margin: 15px ; padding: 15px;">
+            <a href="{% url 'marcamodelos' marca.id %}">
+                <img src="{{marca.logo.url}}" width="100"/>
+            </a>
+        </td>
+        {% if forloop.counter|divisibleby:"3" %}
+    </tr>
+    <tr style="border-bottom: solid 0.5em;">
+        {% endif %}
+            {% endfor %}
+    </tr>
+</table>
+<p style="text-align: center; padding-top: 2em;">
+    <a href="{% url 'crearMarca'%}">
+        <button class="btn btn-warning" style="color:#293133" type="button">
+            Añadir Nuevas Marcas
+        </button>
+    </a>
+    <a href="{% url 'crearModelo'%}">
+        <button class="btn btn-secondary" style="color:#FFFF00" type="button">
+            Añadir Nuevos Modelos
+        </button>
+    </a>
+</p>
+{% endblock %}

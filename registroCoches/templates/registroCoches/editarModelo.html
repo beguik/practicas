@@ -1,0 +1,35 @@
+{% extends "registroCoches/plantilla.html" %}
+{% load static %}
+{% block content %}
+<center>
+    <div class="row justify-content-center">
+        <div class="card" style="align-items: center; padding: 3em;margin: 2em;">
+            <div class="container py-3">
+                <p>
+                    Vamos a modificar el Modelo <br/>
+                    <h3><b>
+                           {{modelo.nombreModelo | upper}}
+                    </b>
+                    </h3>
+                </p>
+                <br/>
+                <div class="card text-center">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <form action="" enctype="multipart/form-data" method="post">
+                                {%csrf_token %}
+                                 {{form.as_p}}
+                                <p style="text-align: center;">
+                                    <button class="btn btn-warning" style="padding:0.5em" type="submit">
+                                        Añadir
+                                    </button>
+                                </p>
+                            </form>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</center>
+{% endblock %}

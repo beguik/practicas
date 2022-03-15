@@ -1,0 +1,68 @@
+<html>
+    <head>
+        {%load static%}
+        <link href="{% static 'registroCoches/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-light bg-secondary">
+                <div class="container">
+                    <div class="logo">
+                        <a class="navbar-brand" href="{% url 'Inicio'%}">
+                            <img height="35" src="{% static 'registroCoches/img/logo.png' %}">
+                            </img>
+                        </a>
+                    </div>
+                    <div class="cabecera">
+                        <h1 style="color:#FAD201">
+                            Gestión de Vehículos
+                        </h1>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+                <div class="container-fluid">
+                    <div class="mx-auto" style="margin:auto">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item" style="margin-right: 50;">
+                                <a class="nav-link {% if request.path == '/'%}active {% endif %}" href="{% url 'Inicio'%}">
+                                    Inicio
+                                </a>
+                            </li>
+                            <li class="nav-item {% if request.path == '/marca'%}active {% endif %}" style="margin-right: 50;">
+                                <a class="nav-link" href="{% url 'Marca'%}">
+                                    Marca
+                                </a>
+                            </li>
+                            <li class="nav-item {% if request.path == '/coche'%}active {% endif %}">
+                                <a class="nav-link" href="{% url 'Coche'%}">
+                                    Coche
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        {%block content%}
+
+       
+       {%endblock%}
+        <footer class="footer text-center py-4">
+            <div class="container bg-secondary" style="padding:30 0;">
+                <p>
+                    © Proyecto realizado para las prácticas en la Empresa TangramBPM por:
+                    <br>
+                        Belén María Guijarro Cubero
+                    </br>
+                </p>
+            </div>
+        </footer>
+        <script crossorigin="anonymous" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" src="https://code.jquery.com/jquery-3.6.0.js">
+        </script>
+        <script src="{% static 'registroCoches/vendor/bootstrap/js/bootstrap.bundle.min.js' %}">
+        </script>
+    </body>
+</html>

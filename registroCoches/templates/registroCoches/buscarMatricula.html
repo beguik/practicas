@@ -1,0 +1,46 @@
+{% extends "registroCoches/plantilla.html" %}
+{% load static %}
+{% block content %}
+<center>
+    <div class="row justify-content-center">
+        <div class="card" style="align-items: center; padding: 3em;margin: 2em;">
+            <div class="container py-3">
+                {% if coche.matricula%}
+                <p>
+                    Ha seleccionado el coche:
+                </p>
+                <br/>
+                <div class="card text-center">
+                    <div class="card-body">
+                        <img src="{{ coche.fotoCoche.url}}" width="100"/>
+                    </div>
+                    <br/>
+                    Matrícula: {{ coche.matricula }}
+                    <br/>
+                    Color:   {{ coche.color }}
+                    <br/>
+                    Kilómetros: {{ coche.kilometros }}
+                    <br/>
+                    Modelo:  {{ coche.modelo }}
+                    <br/>
+                    Fecha de Matriculación:   {{ coche.agnoMatriculacion }}
+                    <br/>
+                </div>
+                {% else%}
+                <div class="card text-center">
+                    Upss, algo ha salido mal!
+                    <br/>
+                    {{coche}}
+                </div>
+                {% endif%}<br/>
+
+                <a href="{% url 'Coche' %}">
+                <button class="btn btn-warning btn-lg btn-block" style="color:#293133" type="button">
+                    Volver
+                </button>
+            </a>
+            </div>
+        </div>
+    </div>
+</center>
+{% endblock %}

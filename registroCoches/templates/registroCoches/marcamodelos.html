@@ -1,0 +1,73 @@
+{% extends "registroCoches/plantilla.html" %}
+{% load static %}
+{% block content %}
+<hr style="border-bottom: solid 0.2em; border-top: solid 0.5em; width: 80%; margin: auto; color: #000000"/>
+<div style="display: flex; width:100%">
+    <div style="padding-left: 5%; width:40%">
+        <center>
+            <h3 style="margin-top:0.5em;">
+                <b>
+                    {{marcas.nombreMarca | upper}}
+                </b>
+            </h3>
+            <img src="{{marcas.logo.url}}" width="100"/>
+            <br/>
+            <br/>
+            <br/>
+            <a href="{% url 'editarMarca' marcas.id %}">
+                <button class="btn btn-secondary" style="color:#FFFF00" type="button">
+                    Modificar
+                </button>
+            </a>
+            <a href="{% url 'eliminarMarca' marcas.id %}">
+                <button class="btn btn-warning" style="color:#293133" type="button">
+                    Eliminar
+                </button>
+            </a>
+        </center>
+    </div>
+    <div style="width: 60%;">
+        <table style="border-left: solid 0.3em; margin-top:0.5em;">
+            <tr>
+                <th scope="col" style="border-collapse: separate; padding:1em;">
+                    Nombre
+                </th>
+                <th scope="col" style="border-collapse: separate; padding:1em">
+                    Año Lanzamiento
+                </th>
+                <th scope="col" style="border-collapse: separate; padding:1em; text-align: center;">
+                    Acciones
+                </th>
+            </tr>
+            {% for modelo in modelos %}
+            <tr>
+                <td style="border-collapse: separate; padding:0.5em; text-align: center;">
+                    {{modelo.nombreModelo}}
+                </td>
+                <td style="border-collapse: separate; padding:0.5em">
+                    {{modelo.agnoModelo}}
+                </td>
+                <td style="border-collapse: separate; padding:0.5em">
+                    <a href="{% url 'editarModelo' modelo.id %}">
+                    <button class="btn btn-secondary" style="color:#FFFF00" type="button">
+                        Modificar
+                    </button></a>
+                    <a href="{% url 'eliminarModelo' modelo.id %}">
+                    <button class="btn btn-warning" style="color:#293133" type="button">
+                        Eliminar
+                    </button></a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <hr/>
+                </td>
+            </tr>
+            {% endfor %}
+            
+            
+        </table>
+    </div>
+</div>
+<hr style="border-bottom: solid 0.2em; border-top: solid 0.5em; width: 80%; margin: auto; color: #000000; margin-top:0.5em;"/>
+{% endblock %}

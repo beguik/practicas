@@ -1,0 +1,61 @@
+{% extends "registroCoches/plantilla.html" %}
+{% load static %}
+{% block content %}
+<center>
+    <br/>
+    Los siguientes coches pertenecen a la Marca: 
+
+{% for marca in marcas %}
+{% if marca.id == identificador %}
+    <b>
+        {{ marca.nombreMarca}}
+    </b>
+    {% endif %}
+{% endfor %}
+    <div class="row justify-content-center">
+        <div class="card" style="align-items: center; padding: 3em;margin: 2em;">
+            <div class="container py-3">
+                {% for cont in control %}
+	{% for coche in coches %}
+		{% if coche.matricula == cont %}
+                <div class="card text-center">
+                    <div class="card-body">
+                        <img src="{{ coche.fotoCoche.url}}" width="100"/>
+                    </div>
+                    <br/>
+                    Matrícula: {{ coche.matricula }}
+                    <br/>
+                    Color:   {{ coche.color }}
+                    <br/>
+                    Kilómetros: {{ coche.kilometros }}
+                    <br/>
+                    Modelo:  {{ coche.modelo }}
+                    <br/>
+                    Fecha de Matriculación:   {{ coche.agnoMatriculacion }}
+                    <br/>
+                    <p style="text-align: center; padding-top: 2em;">
+                        <a href="{% url 'editarCoche' coche.matricula %}">
+                            <button class="btn btn-secondary" style="color:#FFFF00" type="button">
+                               Editar Coche
+                            </button>
+                        </a>
+                        <a href="{% url 'eliminarCoche' coche.matricula %}">
+                            <button class="btn btn-warning" style="color:#293133" type="button">
+                                Eliminar Coche
+                            </button>
+                        </a>
+                    </p>
+                </div><br/>
+                {% endif %}
+	{% endfor %}
+{% endfor %}
+            </div>  
+    
+             <a href="{% url 'Coche' %}">
+                <button class="btn btn-warning " style="color:#293133" type="button">
+                    Volver
+                </button>
+            </a></div>
+     </div> 
+</center>
+{% endblock %}

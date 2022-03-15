@@ -1,0 +1,55 @@
+{% extends "registroCoches/plantilla.html" %}
+{% load static %}
+{% block content %}
+<br/>
+{% if mensaje %}
+<div class="container py-3">
+    <div class="card text-center">
+        <div class="card-body">
+            {{ mensaje }}
+        </div>
+        <a href="{% url 'Coche' %}">
+            <button class="btn btn-warning btn-lg btn-block" style="color:#293133" type="button">
+                Volver
+            </button>
+        </a>
+    </div>
+</div>
+{% else %}
+<p style="text-align: center;">
+    Estos son los coches disponibles
+    <br/>
+    Anteriores a la fecha indicada:
+</p>
+
+<div class="container py-3">
+    {% for coche in coches %}
+    <div class="card text-center">
+        <div class="card-body">
+            <img src="{{ coche.fotoCoche.url}}" width="100"/>
+        </div>
+        <br/>
+        Matrícula: {{ coche.matricula }}
+        <br/>
+        Color:   {{ coche.color }}
+        <br/>
+        Kilómetros: {{ coche.kilometros }}
+        <br/>
+        Modelo:  {{ coche.modelo }}
+        <br/>
+        Fecha de Matriculación:   {{ coche.agnoMatriculacion }}
+        <br/>
+    </div><br/>
+    {% endfor %}
+    <a href="{% url 'Coche' %}">
+        <button class="btn btn-warning btn-lg btn-block" style="color:#293133" type="button">
+            Volver
+        </button>
+    </a>
+</div>
+
+
+
+
+ {% endif %}
+{% endblock %}

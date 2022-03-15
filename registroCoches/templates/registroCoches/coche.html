@@ -1,0 +1,74 @@
+{% extends "registroCoches/plantilla.html" %}
+{% load static %}
+{% block content %}
+<div class="container py-3">
+    <div class="card-body">
+        <center>
+            <p class="card-text">
+                En estos momentos hay {{contador}} coches registrados en nuestra base de datos.
+                <br/>
+                <div class="form-group">
+                    <form action="{% url 'buscarFecha' %}" method="POST">
+                        {%csrf_token %}
+                        <div class="btn-group">
+                            <button class="btn btn-secondary" style="color:#FFFF00" type="submit">
+                                Coches anteriores a la fecha:
+                            </button>
+                        </div>
+                        <input name="fecha" placeholder="Fecha" style="border-radius: 1em;" type="date" />
+                    </form>
+                    <form action="{% url 'buscarMatricula'%}" method="POST">
+                        {%csrf_token %}
+                        <div class="btn-group">
+                            <button class="btn btn-secondary" style="color:#FFFF00" type="submit">
+                                Buscar por Matrícula
+                            </button>
+                        </div>
+                        <input name="matricula" placeholder="Matrícula" style="border-radius: 1em;" type="text"/>
+                    </form>
+                </div>
+            </p>
+        </center>
+    </div>
+</div>
+<hr style="border-bottom: solid 0.5em; width: 80%;align-content: center;"/>
+<p style="text-align: center;">
+    A continuación mostraremos vehículos disponibles por
+    <b>
+        MARCAS
+    </b>
+    :
+</p>
+
+
+
+<div class="row justify-content-center">
+    <ul>
+        {% for marca in marcas %}
+        <ol style="margin:10 0em; ">
+            <img src="{{marca.logo.url}}" width="100"/>
+            {% if marca.id in dicc %}
+            <u>
+                Hay vehículos disponibles,
+                <b><a href="{% url 'cocheMarca' marca.id %}" style="color:#000000">
+                    pinche aquí</a>
+                </b>
+                para verlos.
+            </u>
+            {% else %}
+                    En estos momentos no hay vehículos disponibles.
+                 {% endif %}
+        </ol>
+        {% endfor %}
+    </ul>
+</div>
+<center>
+    <a href="{% url 'crearCoche'%}">
+        <button class="btn btn-secondary" style="color:#FFFF00" type="button">
+            <b>
+                Añadir Nuevos Coche
+            </b>
+        </button>
+    </a>
+</center>
+{% endblock %}

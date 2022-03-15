@@ -1,0 +1,28 @@
+
+
+{% extends "registroCoches/plantilla.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="card text-center">
+        <div class="card-body">
+            <p class="card-text" style="text-align: justify;">
+                Resumen del trabajo realizado:<br/>
+                <ul style="text-align: justify;">
+                    <li> Sobre el <b>Modelo de Datos</b> He optado por un modelo de datos con relación 1M de Marca hacia Modelo y de Modelo hacia Coche. De esa forma quedan las tres tablas relacionadas a través de sus claves Foraneas. </li><br/>
+                    <li> He agregado los tres modelos al <b>panel de administración</b> de Django y he añadido funciones de filtrado por sus claves foraneas.</li><br/>
+                    <li> He implementado una <b>API Rest con DRF </b>para permitir realizar las funciones de un CRUD, para lo cual he creado serializadores de los tres modelos.</li><br/>
+                    <li>Igualmente a través de las pestañas de Marcas y Coches se permite la Creación, Modificación, Eliminación y Listado de cada uno de los modelos de datos, estas funcionalidades han sido implementadas mediante <b>funciones</b>, con la utilización de <b>formularios.</b> </li><br/>
+                    <li>Sobre el <b>diccionario</b> que relaciona las marcas y los coches, he utilizado la funcion select_related() para acceder desde el objeto coche a la marca usando las claves foraneas. </li><br/>
+                    <li>He implementado la búsqueda por <b>fecha</b>, y controlado que genere un error si pulsamos sin introducir ningun valor </li><br/>
+                    <li>He implementado la búsqueda de los vehículos a través de su <b>identificador</b>, que en este caso es la matricula y controlado la opción de que la matrícula no exista.</li>
+
+                </ul>
+
+
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
